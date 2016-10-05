@@ -1,3 +1,5 @@
+package DP_2016_10_03
+
 import scala.annotation.tailrec
 
 object Factorial {

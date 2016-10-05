@@ -1,3 +1,5 @@
+package DP_2016_10_03
+
 import org.scalatest.{FlatSpec, Matchers}
 
 class FactorialTest extends FlatSpec with Matchers {
