@@ -13,21 +13,29 @@ import scala.collection.mutable
 object ZeckendorfIntegers {
 
 
-  def getGreedyZeckendorfRepresentationOf(input: Int, depth: Int): List[BigInt] = {
+  def getGreedyZeckendorfRepresentationOf(target: Int): List[BigInt] = {
 
-    val fibonnaciSequence = fibonacciTo(input).reverse
+    val fibonacciSequence = fibonacciTo(target).reverse
     val result: mutable.Queue[BigInt] = new mutable.Queue[BigInt]()
 
-    var runningTotal: BigInt = 0
-
-    for(i <- 1 to depth) {
-      while(runningTotal + fibonnaciSequence(0) > input){
-         fibonnaciSequence.dequeue()
-      }
-      result += (fibonnaciSequence(0))
-      runningTotal += fibonnaciSequence(0)
-      fibonnaciSequence.dequeue
+    while(sumElements(result) != target){
+      pruneFibonacci(fibonacciSequence, sumElements(result), target)
+      result += (fibonacciSequence(0))
+      fibonacciSequence.dequeue
     }
     result.toList
   }
+
+  private def pruneFibonacci(fibonacciSequence: mutable.Queue[BigInt], currentTotal: BigInt, target: BigInt) = {
+    while (currentTotal + fibonacciSequence(0) > target) {
+      fibonacciSequence.dequeue()
+    }
+  }
+
+  private def sumElements(queue: mutable.Queue[BigInt]): BigInt = {
+    if(queue.nonEmpty)
+      queue.reduceLeft((_ + _))
+    else 0
+  }
+
 }
