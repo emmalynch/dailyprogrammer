@@ -17,7 +17,9 @@ class FactorialTest extends FlatSpec with Matchers {
       Factorial.reverseFactorial(3628800),
       Factorial.reverseFactorial(479001600),
       Factorial.reverseFactorial(6),
-      Factorial.reverseFactorial(18))
-    result shouldBe (Some(10), Some(12), Some(3), None)
+      Factorial.reverseFactorial(18),
+      Factorial.reverseFactorial(0),
+      Factorial.reverseFactorial(-1))
+    result shouldBe (Some(10), Some(12), Some(3), None, None, None)
   }
 }

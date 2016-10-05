@@ -19,7 +19,7 @@ object Factorial {
 
   @tailrec
   def reverseFactorial(input: Int, divisor: Int = 1): Option[Int] = {
-    if(input % divisor != 0)
+    if(input <= 0 || divisor < 1 || input % divisor != 0)
       None
     else {
       val attempt = input / divisor
